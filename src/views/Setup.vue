@@ -3,6 +3,7 @@
     <v-form class="bform">
       <v-container>
         <v-text-field class="text-xs-center" v-model="name" label="Namn" required></v-text-field>
+        <v-text-field class="text-xl-center" v-model="calendarOptions" label="Luckinnehåll" required></v-text-field>
         <v-btn color="success" class="mr-4" @click="toCalendar">Gå vidare</v-btn>
       </v-container>
     </v-form>
@@ -14,8 +15,8 @@
 export default {
   data() {
     return {
-      active: true,
-      name: ""
+      name: "",
+      calendarOptions: ""
     };
   },
   methods: {
