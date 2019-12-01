@@ -4,16 +4,17 @@
             <v-container>
                 <v-text-field class="text-xs-center" v-model="name" label="Namn" required></v-text-field>
                 <v-text-field
+                    disabled
                     class="text-xl-center"
                     v-model="calendarOptions"
-                    label="Luckinnehåll"
+                    label="Luckinnehåll  *Disabled*"
                     required
                 ></v-text-field>
                 <v-btn color="success" class="mr-4" @click="saveAndContinueToCalendar">Gå vidare</v-btn>
             </v-container>
         </v-form>
 
-        <pre>{{ $data || json }}</pre>
+        <pre v-if="name === 'bebo'">{{ $data || json }}</pre>
     </div>
 </template>
 <script>
@@ -26,19 +27,9 @@ export default {
     },
     methods: {
         saveAndContinueToCalendar: function() {
-            var fs = require('fs');
-            let calenderFormat = this.calendarOptions.split('#');
-            var json = JSON.stringify(calenderFormat);
-            fs.writeFile('myjsonfile.json', json, 'utf8', function(err, result) {
-                if (err) {
-                    // eslint-disable-next-line
-                    console.log('error', err);
-                } else {
-                    // eslint-disable-next-line
-                    console.log(result);
-                }
-            });
-            this.$router.push('./Calendar');
+            // eslint-disable-next-line
+        console.log('route', this.name);
+            this.$router.push({ name: 'Calendar', params: { name: this.name } });
         }
     },
     mounted() {
